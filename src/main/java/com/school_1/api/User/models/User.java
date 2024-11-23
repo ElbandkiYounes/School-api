@@ -20,10 +20,9 @@ public class User implements Serializable {
 
     @NotBlank(message = "Password cannot be blank")
     @Pattern(
-            regexp = "^[A-Za-z0-9@#$%^&+=]{8,}$",
-            message = "Password must be at least 8 characters long and contain only letters, digits, or the special characters @#$%^&+="
+            regexp = "^(?=.*[a-zA-Z0-9@#$%^&+=]).{8,}$",
+            message = "Password must be at least 8 characters long and include letters, digits, or special characters"
     )
-
     @Column(nullable = false)
     private String password;
 
