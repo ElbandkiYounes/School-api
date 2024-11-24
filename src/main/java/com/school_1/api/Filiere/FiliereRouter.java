@@ -1,5 +1,6 @@
 package com.school_1.api.Filiere;
 
+import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Commons.Security.Secured;
@@ -41,7 +42,7 @@ public class FiliereRouter {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Secured
-    public Response addFiliere(@Valid CreateFilierePayload payload, @HeaderParam("Email") String email) throws UnauthorizedException {
+    public Response addFiliere(@Valid CreateFilierePayload payload, @HeaderParam("Email") String email) throws UnauthorizedException, DuplicationException {
         Filiere filiere = filiereService.addFiliere(payload, email);
         return Response.status(Response.Status.CREATED).entity(filiere).build();
     }
@@ -51,7 +52,7 @@ public class FiliereRouter {
     @Secured
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateFiliere(@PathParam("id") Long id, @Valid UpdateFilierePayload payload, @HeaderParam("Email") String email) throws UnauthorizedException, NotFoundException {
+    public Response updateFiliere(@PathParam("id") Long id, @Valid UpdateFilierePayload payload, @HeaderParam("Email") String email) throws UnauthorizedException, NotFoundException, DuplicationException {
         Filiere filiere = filiereService.updateFiliere(id, payload, email);
         return Response.ok(filiere).build();
     }

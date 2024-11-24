@@ -1,5 +1,6 @@
 package com.school_1.api.Filiere;
 
+import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Filiere.models.Filiere;
@@ -29,14 +30,20 @@ public class FiliereService {
         }
     }
 
-    public Filiere addFiliere(CreateFilierePayload payload, String email) throws UnauthorizedException {
+    public Filiere addFiliere(CreateFilierePayload payload, String email) throws UnauthorizedException, DuplicationException {
+        if(filiereEJB.findFiliereByName(payload.getName()) != null) {
+            throw new DuplicationException("Filiere with name " + payload.getName() + " already exists");
+        }
         checkCoordinatorRole(email);
         Filiere filiere = payload.toFiliere();
         return filiereEJB.saveFiliere(filiere);
     }
 
-    public Filiere updateFiliere(Long id, UpdateFilierePayload payload, String email) throws UnauthorizedException, NotFoundException {
+    public Filiere updateFiliere(Long id, UpdateFilierePayload payload, String email) throws UnauthorizedException, NotFoundException, DuplicationException {
         checkCoordinatorRole(email);
+        if(filiereEJB.findFiliereByName(payload.getName()) != null) {
+            throw new DuplicationException("Filiere with name " + payload.getName() + " already exists");
+        }
         Filiere existingFiliere = filiereEJB.findFiliereById(id);
         if (existingFiliere == null) {
             throw new NotFoundException("Filiere not found");

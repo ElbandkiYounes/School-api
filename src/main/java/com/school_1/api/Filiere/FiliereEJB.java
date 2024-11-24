@@ -4,6 +4,7 @@ import com.school_1.api.Filiere.models.Filiere;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
@@ -16,6 +17,17 @@ public class FiliereEJB {
     public Filiere saveFiliere(Filiere filiere) {
         entityManager.persist(filiere);
         return filiere;
+    }
+
+    public Filiere findFiliereByName(String name) {
+        try {
+            return entityManager.createQuery("SELECT f FROM Filiere f WHERE f.name = :name", Filiere.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+        }catch (NoResultException e) {
+            return null;
+        }
+
     }
 
     public Filiere findFiliereById(Long id) {

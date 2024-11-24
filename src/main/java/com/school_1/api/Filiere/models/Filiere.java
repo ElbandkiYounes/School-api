@@ -18,7 +18,7 @@ public class Filiere implements Serializable {
     private Long id;
 
     @NotBlank(message = "Filiere name cannot be empty")
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @NotNull(message = "Capacity cannot be null")
