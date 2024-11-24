@@ -39,6 +39,6 @@ public class TokenFilter implements ContainerRequestFilter {
 
     private boolean isValidToken(String email, String token) {
         User user = userEJB.findUserByEmail(email);
-        return user != null && token.equals(user.getVerificationToken());
+        return user != null && token.equals(user.getVerificationToken()) && user.isValidate();
     }
 }

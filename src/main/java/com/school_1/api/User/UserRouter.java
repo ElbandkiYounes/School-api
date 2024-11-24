@@ -1,5 +1,9 @@
 package com.school_1.api.User;
 
+import com.school_1.api.Commons.Exceptions.AccessDeniedException;
+import com.school_1.api.Commons.Exceptions.EmailAlreadyExistsException;
+import com.school_1.api.Commons.Exceptions.NotFoundException;
+import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Commons.Security.Secured;
 import com.school_1.api.User.models.LoginPayload;
 import com.school_1.api.User.models.SignupPayload;
@@ -24,44 +28,27 @@ public class UserRouter {
     @Path("signup")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response signUp(@Valid SignupPayload userPayload) {
-        try {
-            User user = userService.SignUp(userPayload);
-            return Response.ok(user).build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(e.getMessage())
-                    .build();
-        }
+    public Response signUp(@Valid SignupPayload userPayload) throws EmailAlreadyExistsException {
+        User user = userService.signUp(userPayload);
+        return Response.ok(user).build();
     }
 
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(LoginPayload loginPayload) {
-        try {
-            User user = userService.login(loginPayload.getEmail(), loginPayload.getPassword());
-            return Response.ok(user).build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.UNAUTHORIZED)
-                    .entity(e.getMessage())
-                    .build();
-        }
+    public Response login(@Valid LoginPayload loginPayload) throws UnauthorizedException, NotFoundException {
+        User user = userService.login(loginPayload);
+        return Response.ok(user).build();
     }
 
     @GET
     @Path("verify")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response verifyEmail(@QueryParam("token") String token) {
-        try {
-            userService.verifyEmail(token);
-            return Response.ok("Email verified successfully").build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(e.getMessage())
-                    .build();
-        }
+    public Response verifyEmail(@QueryParam("token") String token) throws UnauthorizedException {
+        userService.verifyEmail(token);
+        return Response.ok("Email verified successfully").build();
+
     }
 
     @PUT
@@ -69,14 +56,9 @@ public class UserRouter {
     @Secured
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateUser(@PathParam("id") Long id, UpdateUserPayload updateUserPayload) {
-        try {
-            User updatedUser = userService.updateUser(id, updateUserPayload);
-            return Response.ok(updatedUser).build();
-        } catch (NotFoundException e) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity(e.getMessage())
-                    .build();
-        }
+    public Response updateUser(@PathParam("id") Long id,@Valid UpdateUserPayload updateUserPayload, @HeaderParam("Authorization") String token) throws NotFoundException, AccessDeniedException {
+        User updatedUser = userService.updateUser(id, updateUserPayload, token);
+        return Response.ok(updatedUser).build();
+
     }
 }

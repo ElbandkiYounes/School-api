@@ -9,10 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="">
+    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="password regex fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/models/ChargeHoraire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/EmailAlreadyExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/ErrorDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereEJB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/CreateFilierePayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/Filiere.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/UpdateFilierePayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/models/Matiere.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/SignupPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/SignupPayload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/AccessDeniedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/AccessDeniedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/UnauthorizedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/UnauthorizedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/SchoolApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/SchoolApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/LoginPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/LoginPayload.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +48,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ElbandkiYounes&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ElbandkiYounes/School-api&quot;,
+    &quot;accountId&quot;: &quot;a7220c94-a954-440e-ac7f-f77edb52abcc&quot;
+  }
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -51,21 +80,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 34.0.0.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 34.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
       <deployment>
@@ -82,6 +112,24 @@
         <option name="CREDENTIAL_ALIAS" />
       </server-settings>
       <predefined_log_file enabled="true" id="JBoss" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50746" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
@@ -124,10 +172,25 @@
       <workItem from="1732267658388" duration="142000" />
       <workItem from="1732295002207" duration="18129000" />
       <workItem from="1732351652531" duration="480000" />
+      <workItem from="1732397687999" duration="6530000" />
+      <workItem from="1732438060774" duration="4860000" />
     </task>
+    <task id="LOCAL-00001" summary="password regex fix">
+      <option name="closed" value="true" />
+      <created>1732357688527</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732357688527</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="password regex fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="password regex fix" />
   </component>
 </project>
