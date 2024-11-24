@@ -9,27 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="password regex fix">
+    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="Exception handling fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireEJB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/models/ChargeHoraire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/EmailAlreadyExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/ErrorDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/models/CreateChargeHorairePayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/models/UpdateChargeHorairePayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/DuplicationException.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereEJB.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereRouter.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/CreateFilierePayload.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/Filiere.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/UpdateFilierePayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/MatiereEJB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/MatiereRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/MatiereService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/models/CreateMatierePayload.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/models/Matiere.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Matiere/models/UpdateMatierePayload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/AccessDeniedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/AccessDeniedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/UnauthorizedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/UnauthorizedException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/SchoolApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/SchoolApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/EmailAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserRouter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/LoginPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/models/LoginPayload.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +75,9 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -173,7 +181,7 @@
       <workItem from="1732295002207" duration="18129000" />
       <workItem from="1732351652531" duration="480000" />
       <workItem from="1732397687999" duration="6530000" />
-      <workItem from="1732438060774" duration="4860000" />
+      <workItem from="1732438060774" duration="20838000" />
     </task>
     <task id="LOCAL-00001" summary="password regex fix">
       <option name="closed" value="true" />
@@ -183,14 +191,34 @@
       <option name="project" value="LOCAL" />
       <updated>1732357688527</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Exception handling fix">
+      <option name="closed" value="true" />
+      <created>1732443282888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732443282888</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="password regex fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="password regex fix" />
+    <MESSAGE value="Exception handling fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exception handling fix" />
   </component>
 </project>

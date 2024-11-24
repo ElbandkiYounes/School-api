@@ -1,7 +1,7 @@
 package com.school_1.api.User;
 
 import com.school_1.api.Commons.Exceptions.AccessDeniedException;
-import com.school_1.api.Commons.Exceptions.EmailAlreadyExistsException;
+import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Commons.Services.EmailService;
@@ -11,7 +11,6 @@ import com.school_1.api.User.models.UpdateUserPayload;
 import com.school_1.api.User.models.User;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.BadRequestException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.UUID;
@@ -24,9 +23,9 @@ public class UserService {
     @Inject
     private EmailService emailService;
 
-    public User signUp(SignupPayload userPayload) throws EmailAlreadyExistsException {
+    public User signUp(SignupPayload userPayload) throws DuplicationException {
         if(userEJB.findUserByEmail(userPayload.getEmail()) != null) {
-            throw new EmailAlreadyExistsException("Email already exists");
+            throw new DuplicationException("Email already exists");
         }
         User user = userPayload.toUser();
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));

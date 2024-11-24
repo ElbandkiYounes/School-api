@@ -20,7 +20,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Throwable> {
         logger.error("Exception caught:", exception);
 
         // Handle specific exceptions
-        if (exception instanceof EmailAlreadyExistsException) {
+        if (exception instanceof DuplicationException) {
             return Response.status(Response.Status.CONFLICT)
                     .entity(new ErrorDTO(exception.getMessage()))
                     .type(MediaType.APPLICATION_JSON)

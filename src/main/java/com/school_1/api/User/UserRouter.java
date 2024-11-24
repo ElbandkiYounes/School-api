@@ -1,7 +1,7 @@
 package com.school_1.api.User;
 
 import com.school_1.api.Commons.Exceptions.AccessDeniedException;
-import com.school_1.api.Commons.Exceptions.EmailAlreadyExistsException;
+import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Commons.Security.Secured;
@@ -16,8 +16,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.List;
-
 @Path("users")
 @Stateless
 public class UserRouter {
@@ -28,7 +26,7 @@ public class UserRouter {
     @Path("signup")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response signUp(@Valid SignupPayload userPayload) throws EmailAlreadyExistsException {
+    public Response signUp(@Valid SignupPayload userPayload) throws DuplicationException {
         User user = userService.signUp(userPayload);
         return Response.ok(user).build();
     }
