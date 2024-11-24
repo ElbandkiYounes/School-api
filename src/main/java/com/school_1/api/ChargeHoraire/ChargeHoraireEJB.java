@@ -27,6 +27,17 @@ public class ChargeHoraireEJB {
                 .getResultList();
     }
 
+    public ChargeHoraire findChargeHoraireByFiliereIdAndMatiereId(Long filiereId, Long matiereId) {
+        try {
+            return entityManager.createQuery("SELECT c FROM ChargeHoraire c WHERE c.filiere.id = :filiereId AND c.matiere.id = :matiereId", ChargeHoraire.class)
+                    .setParameter("filiereId", filiereId)
+                    .setParameter("matiereId", matiereId)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
     public ChargeHoraire findChargeHoraireById(Long id) {
         return entityManager.find(ChargeHoraire.class, id);
     }

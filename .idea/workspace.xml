@@ -10,11 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="Filiere Management Part1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleEJB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/CreateSallePayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/Salle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/SalleType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/UpdateSallePayload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereEJB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereEJB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereRouter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/FiliereService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/Filiere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Filiere/models/Filiere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireEJB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireEJB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Security/CORSFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Security/CORSFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Exception" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -78,7 +85,7 @@
     "JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "unique__filiere__name",
+    "git-widget-placeholder": "gestion-des-salle-partie1",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -204,7 +211,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
