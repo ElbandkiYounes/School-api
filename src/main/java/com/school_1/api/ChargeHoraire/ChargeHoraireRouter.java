@@ -3,6 +3,7 @@ package com.school_1.api.ChargeHoraire;
 import com.school_1.api.ChargeHoraire.models.ChargeHoraire;
 import com.school_1.api.ChargeHoraire.models.CreateChargeHorairePayload;
 import com.school_1.api.ChargeHoraire.models.UpdateChargeHorairePayload;
+import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Commons.Security.Secured;
@@ -43,7 +44,7 @@ public class ChargeHoraireRouter {
     @Path("/filiere/{filiereId}/matiere/{matiereId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addChargeHoraire(@Valid CreateChargeHorairePayload payload, @HeaderParam("Email") String email, @PathParam("filiereId") Long filiereId, @PathParam("matiereId") Long matiereId) throws UnauthorizedException, NotFoundException {
+    public Response addChargeHoraire(@Valid CreateChargeHorairePayload payload, @HeaderParam("Email") String email, @PathParam("filiereId") Long filiereId, @PathParam("matiereId") Long matiereId) throws UnauthorizedException, NotFoundException, DuplicationException {
         ChargeHoraire chargeHoraire = chargeHoraireService.addChargeHoraire(payload, email, filiereId, matiereId);
         return Response.status(Response.Status.CREATED).entity(chargeHoraire).build();
     }

@@ -3,6 +3,7 @@ package com.school_1.api.ChargeHoraire;
 import com.school_1.api.ChargeHoraire.models.ChargeHoraire;
 import com.school_1.api.ChargeHoraire.models.CreateChargeHorairePayload;
 import com.school_1.api.ChargeHoraire.models.UpdateChargeHorairePayload;
+import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Filiere.FiliereService;
@@ -39,8 +40,11 @@ public class ChargeHoraireService {
         }
     }
 
-    public ChargeHoraire addChargeHoraire(CreateChargeHorairePayload payload, String email, Long filiereId, Long matiereId) throws UnauthorizedException, NotFoundException {
+    public ChargeHoraire addChargeHoraire(CreateChargeHorairePayload payload, String email, Long filiereId, Long matiereId) throws UnauthorizedException, NotFoundException, DuplicationException {
         checkCoordinatorRole(email);
+        if(chargeHoraireEJB.findChargeHoraireByFiliereIdAndMatiereId(filiereId, matiereId) != null) {
+            throw new DuplicationException("ChargeHoraire de la matiere avec id:"+matiereId+" deja definie pour la filiere id:"+filiereId+" already exists");
+        }
         Filiere filiere = filiereService.getFiliereById(filiereId);
         Matiere matiere = matiereService.getMatiereById(matiereId);
 
