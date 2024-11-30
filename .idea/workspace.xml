@@ -9,19 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="Filiere Management Part1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleEJB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleRouter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/CreateSallePayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/Salle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/SalleType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/UpdateSallePayload.java" afterDir="false" />
+    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="CRUD Salle With Access Control">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireEJB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireEJB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireRouter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/ChargeHoraire/ChargeHoraireService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Security/CORSFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Security/CORSFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,13 +77,16 @@
     "JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "gestion-des-salle-partie1",
+    "git-widget-placeholder": "delete-Charges-horaire-by-filiere",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
   }
@@ -175,6 +170,12 @@
       <workItem from="1732397687999" duration="6530000" />
       <workItem from="1732438060774" duration="21502000" />
       <workItem from="1732475010979" duration="2433000" />
+      <workItem from="1732540488002" duration="53000" />
+      <workItem from="1732561391239" duration="380000" />
+      <workItem from="1732615934439" duration="408000" />
+      <workItem from="1732821567458" duration="363000" />
+      <workItem from="1732920934063" duration="602000" />
+      <workItem from="1732971698177" duration="1598000" />
     </task>
     <task id="LOCAL-00001" summary="password regex fix">
       <option name="closed" value="true" />

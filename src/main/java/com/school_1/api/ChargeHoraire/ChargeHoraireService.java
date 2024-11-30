@@ -71,6 +71,12 @@ public class ChargeHoraireService {
         chargeHoraireEJB.deleteChargeHoraire(id);
     }
 
+    public void deleteChargeHoraireByFiliere(Long filiereId, String email) throws UnauthorizedException, NotFoundException {
+        checkCoordinatorRole(email);
+        filiereService.getFiliereById(filiereId);
+        chargeHoraireEJB.deleteChargeHoraireByFiliereId(filiereId);
+    }
+
     public ChargeHoraire getChargeHoraireById(Long id) throws NotFoundException {
         ChargeHoraire chargeHoraire = chargeHoraireEJB.findChargeHoraireById(id);
         if (chargeHoraire == null) {
@@ -80,10 +86,7 @@ public class ChargeHoraireService {
     }
 
     public List<ChargeHoraire> getChargesHorairesByFiliere(Long filiereId) throws NotFoundException {
-        Filiere filiere = filiereService.getFiliereById(filiereId);
-        if (filiere == null) {
-            throw new NotFoundException("Filiere not found");
-        }
+        filiereService.getFiliereById(filiereId);
         return chargeHoraireEJB.findChargesHorairesByFiliereId(filiereId);
     }
 
