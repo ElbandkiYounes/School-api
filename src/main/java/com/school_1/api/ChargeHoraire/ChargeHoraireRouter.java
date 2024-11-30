@@ -66,4 +66,12 @@ public class ChargeHoraireRouter {
         chargeHoraireService.deleteChargeHoraire(id, email);
         return Response.noContent().build();
     }
+
+    @DELETE
+    @Path("/filiere/{filiereId}")
+    @Secured
+    public Response deleteChargeHoraireByFiliere(@PathParam("filiereId") Long filiereId, @HeaderParam("Email") String email) throws UnauthorizedException, NotFoundException {
+        chargeHoraireService.deleteChargeHoraireByFiliere(filiereId, email);
+        return Response.noContent().build();
+    }
 }

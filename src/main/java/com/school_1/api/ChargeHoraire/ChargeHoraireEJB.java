@@ -1,7 +1,6 @@
 package com.school_1.api.ChargeHoraire;
 
 import com.school_1.api.ChargeHoraire.models.ChargeHoraire;
-import jakarta.ejb.EJB;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -51,6 +50,11 @@ public class ChargeHoraireEJB {
         if (chargeHoraire != null) {
             entityManager.remove(chargeHoraire);
         }
+    }
+
+    public void deleteChargeHoraireByFiliereId(Long filiereId) {
+        List<ChargeHoraire> chargeHoraires = findChargesHorairesByFiliereId(filiereId);
+        chargeHoraires.forEach(chargeHoraire -> entityManager.remove(chargeHoraire));
     }
 
 }
