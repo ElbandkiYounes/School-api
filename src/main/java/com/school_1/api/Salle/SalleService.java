@@ -42,13 +42,15 @@ public class SalleService {
 
     public Salle updateSalle(Long id, UpdateSallePayload payload, String email) throws NotFoundException, UnauthorizedException, DuplicationException {
         checkResponsableSallesRole(email);
-        if(salleEJB.findSalleByName(payload.getName()) != null) {
-            throw new DuplicationException("Salle with name " + payload.getName() + " already exists");
-        }
         Salle existingSalle = salleEJB.findSalleById(id);
         if (existingSalle == null) {
             throw new NotFoundException("Salle not found");
         }
+
+        if(salleEJB.findSalleByName(payload.getName()) != null && !salleEJB.findSalleByName(payload.getName()).getId().equals(id)) {
+            throw new DuplicationException("Salle with name " + payload.getName() + " already exists");
+        }
+
         existingSalle = payload.toSalle(existingSalle);
         return salleEJB.updateSalle(existingSalle);
     }
