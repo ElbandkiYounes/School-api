@@ -41,7 +41,7 @@ public class FiliereService {
 
     public Filiere updateFiliere(Long id, UpdateFilierePayload payload, String email) throws UnauthorizedException, NotFoundException, DuplicationException {
         checkCoordinatorRole(email);
-        if(filiereEJB.findFiliereByName(payload.getName()) != null) {
+        if(filiereEJB.findFiliereByName(payload.getName()) != null && !filiereEJB.findFiliereByName(payload.getName()).getId().equals(id)) {
             throw new DuplicationException("Filiere with name " + payload.getName() + " already exists");
         }
         Filiere existingFiliere = filiereEJB.findFiliereById(id);
