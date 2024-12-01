@@ -10,18 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="Delete ChargeHoraire By Filiere ID added">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/BadRequestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/EmploiDuTempsEJB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/EmploiDuTempsRouter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/EmploiDuTempsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/models/CreateEmploiDuTempsPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/models/EmploiDuTemps.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/models/Jour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/models/Seance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/EmploiDuTemps/models/UpdateEmploiDuTempsPayload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Commons/Exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserEJB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserEJB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/User/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,25 +72,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;emploi__du__temps&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "get-all-profs",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 34.0.0.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 34.0.0.Final" ALTERNATIVE_JRE_ENABLED="false">
       <deployment>

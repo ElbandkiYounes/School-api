@@ -49,6 +49,14 @@ public class UserRouter {
 
     }
 
+    @GET
+    @Path(("/professeurs"))
+    @Produces(MediaType.APPLICATION_JSON)
+    @Secured
+    public Response getProfessurs() {
+        return Response.ok(userService.getProfessurs()).build();
+    }
+
     @PUT
     @Path("/{id}")
     @Secured
