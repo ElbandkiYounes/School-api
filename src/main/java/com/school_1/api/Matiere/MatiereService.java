@@ -46,7 +46,7 @@ public class MatiereService {
         if (existingMatiere == null) {
             throw new NotFoundException("Matiere not found");
         }
-        if(matiereEJB.findMatiereByName(updateMatierePayload.getName()) != null) {
+        if(matiereEJB.findMatiereByName(updateMatierePayload.getName()) != null && !existingMatiere.getId().equals(id)) {
             throw new DuplicationException("Matiere with this new name already exists");
         }
         existingMatiere = updateMatierePayload.toMatiere(existingMatiere);
