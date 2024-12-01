@@ -48,6 +48,13 @@ public class GlobalExceptionHandler implements ExceptionMapper<Throwable> {
                     .build();
         }
 
+        if (exception instanceof BadRequestException) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(new ErrorDTO(exception.getMessage()))
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+
         if (exception instanceof ConstraintViolationException) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(new ErrorDTO("Validation failed"))
