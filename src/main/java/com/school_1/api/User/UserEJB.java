@@ -34,6 +34,11 @@ public class UserEJB {
         return entityManager.find(User.class, userId);
     }
 
+    public List<User> findAllProfesseurs() {
+        return entityManager.createQuery("SELECT u FROM User u WHERE u.role = 'PROFESSEUR'", User.class)
+                .getResultList();
+    }
+
     public User findUserByVerificationToken(String token) {
         try {
             return entityManager.createQuery("SELECT u FROM User u WHERE u.verificationToken = :token", User.class)

@@ -13,6 +13,7 @@ import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.List;
 import java.util.UUID;
 
 @Stateless
@@ -78,6 +79,10 @@ public class UserService {
         } else {
             throw new UnauthorizedException("Invalid verification token");
         }
+    }
+
+    public List<User> getProfessurs() {
+        return userEJB.findAllProfesseurs();
     }
 
 }
