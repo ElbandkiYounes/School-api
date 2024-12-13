@@ -5,6 +5,7 @@ import com.school_1.api.EmploiDuTemps.models.Seance;
 import com.school_1.api.Reservation.models.Reservation;
 import com.school_1.api.Reservation.models.ReservationStatus;
 import com.school_1.api.Reservation.models.Week;
+import com.school_1.api.Salle.models.Salle;
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -40,12 +41,13 @@ public class ReservationEJB {
                 .getResultList();
     }
 
-    public Reservation findResevationByProfesseurIdANDNotRegected(Long professeurId) {
-        try{
-            return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.professeur.id = :professeurId AND r.reservationStatus <> : reservationStatus", Reservation.class)
-                .setParameter("professeurId", professeurId)
-                    .setParameter("reservationStatus", ReservationStatus.REJECTED)
-                .getSingleResult();
+    public Reservation findReservationByProfesseurIdAndNotRejectedOrPassed(Long professeurId) {
+        try {
+            return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.professeur.id = :professeurId AND r.reservationStatus <> :rejectedStatus AND r.reservationStatus <> :passedStatus", Reservation.class)
+                    .setParameter("professeurId", professeurId)
+                    .setParameter("rejectedStatus", ReservationStatus.REJECTED)
+                    .setParameter("passedStatus", ReservationStatus.PASSED)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
@@ -103,4 +105,19 @@ public class ReservationEJB {
                 .getResultList();
     }
 
+    public List<Reservation> findReservationsBySeanceAndStatus(Seance seance, List<ReservationStatus> statuses) {
+        return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.seance = :seance AND r.reservationStatus IN :statuses", Reservation.class)
+                .setParameter("seance", seance)
+                .setParameter("statuses", statuses)
+                .getResultList();
+    }
+
+    public List<Reservation> findReservationBySeanceANDSalleANDWeekANDJour(Seance seance, Salle salle, Week week, Jour jour) {
+        return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.seance = :seance AND r.salle = :salle AND r.week = :week AND r.jour = :jour", Reservation.class)
+                .setParameter("seance", seance)
+                .setParameter("salle", salle)
+                .setParameter("week", week)
+                .setParameter("jour", jour)
+                .getResultList();
+    }
 }

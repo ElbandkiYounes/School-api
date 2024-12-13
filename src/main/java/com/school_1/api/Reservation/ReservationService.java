@@ -3,8 +3,11 @@ package com.school_1.api.Reservation;
 import com.school_1.api.Commons.Exceptions.*;
 import com.school_1.api.Commons.Services.EmailService;
 import com.school_1.api.EmploiDuTemps.EmploiDuTempsEJB;
+import com.school_1.api.EmploiDuTemps.models.EmploiDuTemps;
 import com.school_1.api.EmploiDuTemps.models.Jour;
+import com.school_1.api.EmploiDuTemps.models.Seance;
 import com.school_1.api.Filiere.models.Filiere;
+import com.school_1.api.Liberation.LiberationEJB;
 import com.school_1.api.Reservation.models.CreateReservationPayload;
 import com.school_1.api.Reservation.models.Reservation;
 import com.school_1.api.Reservation.models.ReservationStatus;
@@ -13,20 +16,19 @@ import com.school_1.api.Salle.SalleService;
 import com.school_1.api.Filiere.FiliereService;
 import com.school_1.api.Salle.models.Salle;
 import com.school_1.api.User.UserEJB;
-import com.school_1.api.User.UserService;
 import com.school_1.api.User.models.User;
 import com.school_1.api.User.models.UserRole;
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.DayOfWeek;
 import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Stateless
 public class ReservationService {
@@ -44,10 +46,10 @@ public class ReservationService {
     private FiliereService filiereService;
 
     @Inject
-    private UserEJB userEJB;
+    private LiberationEJB liberationEJB;
 
     @Inject
-    private UserService userService;
+    private UserEJB userEJB;
 
     @Inject
     private EmailService emailService;
@@ -90,7 +92,7 @@ public class ReservationService {
         return Week.values()[weekNumber - 1];
     }
 
-    public Jour getCurrentDay() throws BadRequestException {
+    public Jour getCurrentDay() {
         LocalDate today = LocalDate.now();
         DayOfWeek currentDayOfWeek = today.getDayOfWeek();
 
@@ -153,19 +155,20 @@ public class ReservationService {
         Salle salle = salleService.getSalleById(payload.getSalleId());
 
         // Autres vérifications de disponibilité
-        if(reservationEJB.findResevationByProfesseurIdANDNotRegected(professeur.getId()) != null) {
+        if(reservationEJB.findReservationByProfesseurIdAndNotRejectedOrPassed(professeur.getId()) != null) {
             throw new DuplicationException("Professeur already has a reservation only one reservation is allowed");
         }
-
-        if(emploiDuTempsEJB.findEmploiDuTempsByJourAndSeanceANDProfesseur(payload.getJour(), payload.getSeance(), professeur.getId()) != null) {
+        EmploiDuTemps emp = emploiDuTempsEJB.findEmploiDuTempsByJourAndSeanceANDProfesseur(payload.getJour(), payload.getSeance(), professeur.getId());
+        if(emp != null && (liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()) == null || liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()).getWeek().ordinal() != payload.getWeek().ordinal())) {
             throw new DuplicationException("Professeur already occupied");
         }
-
-        if(emploiDuTempsEJB.findEmploiDuTempsByJourANDSeanceANDFiliere(payload.getJour(), payload.getSeance(), filiere.getId()) != null) {
+        emp = emploiDuTempsEJB.findEmploiDuTempsByJourANDSeanceANDFiliere(payload.getJour(), payload.getSeance(), filiere.getId());
+        if(emp != null && (liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()) == null || liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()).getWeek().ordinal() != payload.getWeek().ordinal())) {
             throw new DuplicationException("Filiere already occupied");
         }
 
-        if(emploiDuTempsEJB.findEmploiDuTempsByJourAndSeanceANDSalle(payload.getJour(), payload.getSeance(), salle) != null) {
+        emp = emploiDuTempsEJB.findEmploiDuTempsByJourAndSeanceANDSalle(payload.getJour(), payload.getSeance(), salle);
+        if(emp!= null && (liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()) == null || liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()).getWeek().ordinal() != payload.getWeek().ordinal())) {
             throw new DuplicationException("Salle already occupied");
         }
 
@@ -216,74 +219,84 @@ public class ReservationService {
         }
     }
 
-    @Schedule(hour = "23", minute = "59") // Run daily at 23:59
-    public void cleanupPendingReservations() {
+    @Schedule(hour = "10", minute = "1") // After SEANCE_1 (8-10)
+    @Schedule(hour = "12", minute = "1") // After SEANCE_2 (10-12)
+    @Schedule(hour = "16", minute = "1") // After SEANCE_3 (14-16)
+    @Schedule(hour = "18", minute = "1") // After SEANCE_4 (16-18)
+    public void cleanupReservations() throws BadRequestException {
         LocalDate today = LocalDate.now();
+        Seance currentSeance = determineCurrentSeance();
 
-        // Find all pending reservations
-        List<Reservation> pendingReservations = reservationEJB.findPendingReservations();
-
-        // Filter reservations that are past their reservation day
-        List<Reservation> expiredPendingReservations = pendingReservations.stream()
-                .filter(reservation ->
-                        // Check if the reservation week and day are in the past
-                        isReservationExpired(reservation, today)
-                )
-                .toList();
-
-        // Update and notify
-        for (Reservation reservation : expiredPendingReservations) {
-            // Change status to REJECTED
-            reservation.setReservationStatus(ReservationStatus.REJECTED);
-
-            // Save the updated reservation
-            reservationEJB.saveReservation(reservation);
-
-            // Send notification email
-            sendRejectionEmail(reservation);
+        if (currentSeance == null) {
+            return; // Exit if no valid seance
         }
-    }
 
-    private boolean isReservationExpired(Reservation reservation, LocalDate currentDate) {
-        // Get the start of the school year
-        LocalDate startOfSchoolYear = LocalDate.of(
-                currentDate.getMonth().getValue() >= Month.SEPTEMBER.getValue()
-                        ? currentDate.getYear()
-                        : currentDate.getYear() - 1,
-                9, 1
+        // Find all pending and accepted reservations
+        List<Reservation> reservationsToCleanup = reservationEJB.findReservationsBySeanceAndStatus(
+                currentSeance,
+                List.of(ReservationStatus.PENDING, ReservationStatus.ACCEPTED)
         );
 
-        // Calculate the exact date of the reservation based on week and day
-        LocalDate reservationDate = calculateReservationDate(startOfSchoolYear, reservation);
+        for (Reservation reservation : reservationsToCleanup) {
+            // Check if the reservation is for the current seance and has passed
+            if (isReservationExpired(reservation, today, currentSeance)) {
+                // For pending reservations, change to REJECTED
+                if (reservation.getReservationStatus() == ReservationStatus.PENDING) {
+                    reservation.setReservationStatus(ReservationStatus.REJECTED);
+                    sendRejectionEmail(reservation);
+                }
+                // For accepted reservations, change to PASSED
+                else if (reservation.getReservationStatus() == ReservationStatus.ACCEPTED) {
+                    reservation.setReservationStatus(ReservationStatus.PASSED);
+                    sendPassedEmail(reservation);
+                }
 
-        // Check if the reservation date is before or equal to the current date
-        return reservationDate.isBefore(currentDate) || reservationDate.isEqual(currentDate);
-    }
-
-    private LocalDate calculateReservationDate(LocalDate startOfSchoolYear, Reservation reservation) {
-        // Calculate the date of the reservation based on the week and day
-        LocalDate reservationDate = startOfSchoolYear
-                .plusWeeks(reservation.getWeek().ordinal())
-                .plusDays(getJourOffset(reservation.getJour()));
-
-        return reservationDate;
-    }
-
-    private int getJourOffset(Jour jour) {
-        // Map Jour enum to the correct number of days to add
-        switch (jour) {
-            case LUNDI: return 0;
-            case MARDI: return 1;
-            case MERCREDI: return 2;
-            case JEUDI: return 3;
-            case VENDREDI: return 4;
-            default: return 0;
+                // Save the updated reservation
+                reservationEJB.saveReservation(reservation);
+            }
         }
+    }
+
+    private Seance determineCurrentSeance() {
+        LocalTime now = LocalTime.now();
+
+        if (now.isAfter(LocalTime.of(8, 0)) && now.isBefore(LocalTime.of(10, 0))) {
+            return Seance.SEANCE_1;
+        } else if (now.isAfter(LocalTime.of(10, 0)) && now.isBefore(LocalTime.of(12, 0))) {
+            return Seance.SEANCE_2;
+        } else if (now.isAfter(LocalTime.of(14, 0)) && now.isBefore(LocalTime.of(16, 0))) {
+            return Seance.SEANCE_3;
+        } else if (now.isAfter(LocalTime.of(16, 0)) && now.isBefore(LocalTime.of(18, 0))) {
+            return Seance.SEANCE_4;
+        }
+
+        return null;
+    }
+
+    private boolean isReservationExpired(Reservation reservation, LocalDate currentDate, Seance currentSeance) throws BadRequestException {
+        // Check if the reservation is for the current week and day
+        Week currentWeek = getCurrentWeek();
+        Jour currentDay = getCurrentDay();
+
+        return (reservation.getWeek() == currentWeek &&
+                reservation.getJour() == currentDay &&
+                reservation.getSeance() == currentSeance);
     }
 
     private void sendRejectionEmail(Reservation reservation) {
         String subject = "Reservation Expired";
         String body = "Your reservation has been automatically rejected as it was not processed in time.";
+
+        emailService.sendEmail(
+                reservation.getProfesseur().getEmail(),
+                subject,
+                body
+        );
+    }
+
+    private void sendPassedEmail(Reservation reservation) {
+        String subject = "Reservation Passed";
+        String body = "Your reservation has passed";
 
         emailService.sendEmail(
                 reservation.getProfesseur().getEmail(),

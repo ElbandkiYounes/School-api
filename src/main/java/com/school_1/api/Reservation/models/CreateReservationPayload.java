@@ -5,7 +5,6 @@ import com.school_1.api.EmploiDuTemps.models.Seance;
 import com.school_1.api.Filiere.models.Filiere;
 import com.school_1.api.Salle.models.Salle;
 import com.school_1.api.User.models.User;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateReservationPayload {
