@@ -9,17 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="reservations done">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Liberation/LiberationEJB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Liberation/LiberationRouter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Liberation/LiberationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Liberation/models/CreateLiberationPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Liberation/models/Liberation.java" afterDir="false" />
+    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="liberations done">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/models/GetPayload.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/ReservationEJB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/ReservationEJB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/models/CreateReservationPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/models/CreateReservationPayload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/models/ReservationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Reservation/models/ReservationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleEJB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleEJB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleRouter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleRouter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/school_1/api/Salle/SalleService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="reservations" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,7 +88,7 @@
     &quot;JBoss/WildFly Server.JBoss/WildFly 34.0.0.Final.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;get-free-salle-week&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -199,7 +194,8 @@
       <workItem from="1734041806871" duration="4205000" />
       <workItem from="1734084506661" duration="1512000" />
       <workItem from="1734091378477" duration="1169000" />
-      <workItem from="1734100468019" duration="4244000" />
+      <workItem from="1734100468019" duration="4922000" />
+      <workItem from="1734121030867" duration="5281000" />
     </task>
     <task id="LOCAL-00001" summary="password regex fix">
       <option name="closed" value="true" />
@@ -249,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733061464016</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="liberations done">
+      <option name="closed" value="true" />
+      <created>1734104928109</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734104928109</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +290,7 @@
     <MESSAGE value="Get All Profs" />
     <MESSAGE value="fix update filiere" />
     <MESSAGE value="fix update salle" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix update salle" />
+    <MESSAGE value="liberations done" />
+    <option name="LAST_COMMIT_MESSAGE" value="liberations done" />
   </component>
 </project>

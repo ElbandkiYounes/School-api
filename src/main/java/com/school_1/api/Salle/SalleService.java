@@ -1,13 +1,19 @@
 package com.school_1.api.Salle;
 
 import com.school_1.api.Commons.Exceptions.DuplicationException;
+import com.school_1.api.EmploiDuTemps.EmploiDuTempsEJB;
+import com.school_1.api.EmploiDuTemps.models.Jour;
+import com.school_1.api.EmploiDuTemps.models.Seance;
+import com.school_1.api.Liberation.LiberationEJB;
+import com.school_1.api.Liberation.LiberationService;
+import com.school_1.api.Reservation.ReservationEJB;
+import com.school_1.api.Reservation.models.Week;
 import com.school_1.api.Salle.models.Salle;
 import com.school_1.api.Salle.models.CreateSallePayload;
 import com.school_1.api.Salle.models.UpdateSallePayload;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.User.UserEJB;
-import com.school_1.api.User.UserService;
 import com.school_1.api.User.models.User;
 import com.school_1.api.User.models.UserRole;
 import jakarta.ejb.Stateless;
@@ -17,6 +23,14 @@ import java.util.List;
 
 @Stateless
 public class SalleService {
+    @Inject
+    private EmploiDuTempsEJB emploiDuTempsEJB;
+
+    @Inject
+    private ReservationEJB reservationEJB;
+
+    @Inject
+    private LiberationEJB liberationEJB;
 
     @Inject
     private SalleEJB salleEJB;
@@ -74,5 +88,9 @@ public class SalleService {
 
     public List<Salle> getAllSalles() {
         return salleEJB.findAllSalles();
+    }
+
+    public List<Salle> getFreeSallePerDayAndWeekAndSceance(Jour day, Week week, Seance seance) {
+        return salleEJB.getFreeSallePerDayAndWeekAndSceance(day, week, seance);
     }
 }

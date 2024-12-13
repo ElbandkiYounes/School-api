@@ -4,7 +4,9 @@ import com.school_1.api.Commons.Exceptions.DuplicationException;
 import com.school_1.api.Commons.Exceptions.NotFoundException;
 import com.school_1.api.Commons.Exceptions.UnauthorizedException;
 import com.school_1.api.Commons.Security.Secured;
+import com.school_1.api.Reservation.models.Week;
 import com.school_1.api.Salle.models.CreateSallePayload;
+import com.school_1.api.Salle.models.GetPayload;
 import com.school_1.api.Salle.models.Salle;
 import com.school_1.api.Salle.models.UpdateSallePayload;
 import jakarta.ejb.Stateless;
@@ -39,6 +41,14 @@ public class SalleRouter {
         return Response.ok(salle).build();
     }
 
+    @GET
+    @Path("/free-day-week-seance")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Secured
+    public List<Salle> getFreeSallePerDayAndWeekAndSceance(@Valid GetPayload payload) {
+        return salleService.getFreeSallePerDayAndWeekAndSceance(payload.getDay(), payload.getWeek(), payload.getSeance());
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -66,4 +76,6 @@ public class SalleRouter {
         return Response.noContent().build();
 
     }
+
+
 }
