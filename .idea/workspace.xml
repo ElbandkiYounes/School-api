@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="multi res done">
+    <list default="true" id="d14a1d23-560e-441f-b71b-dbf7fe9af535" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,6 +200,7 @@
       <workItem from="1734121030867" duration="5281000" />
       <workItem from="1734189109032" duration="998000" />
       <workItem from="1734190737953" duration="547000" />
+      <workItem from="1734215470421" duration="730000" />
     </task>
     <task id="LOCAL-00001" summary="password regex fix">
       <option name="closed" value="true" />
@@ -257,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734104928109</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix">
+      <option name="closed" value="true" />
+      <created>1734215522509</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1734215522509</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +305,7 @@
     <MESSAGE value="fix update salle" />
     <MESSAGE value="liberations done" />
     <MESSAGE value="multi res done" />
-    <option name="LAST_COMMIT_MESSAGE" value="multi res done" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

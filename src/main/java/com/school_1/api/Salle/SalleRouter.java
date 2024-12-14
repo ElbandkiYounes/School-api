@@ -41,7 +41,7 @@ public class SalleRouter {
         return Response.ok(salle).build();
     }
 
-    @GET
+    @POST
     @Path("/free-day-week-seance")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
