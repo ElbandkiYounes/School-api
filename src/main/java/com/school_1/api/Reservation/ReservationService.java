@@ -155,8 +155,8 @@ public class ReservationService {
         Salle salle = salleService.getSalleById(payload.getSalleId());
 
         // Autres vérifications de disponibilité
-        if(reservationEJB.findReservationByProfesseurIdAndNotRejectedOrPassed(professeur.getId()) != null) {
-            throw new DuplicationException("Professeur already has a reservation only one reservation is allowed");
+        if(reservationEJB.findReservationByProfesseurIdANDSenaceANDDayANDWeekANDSalleNotRejectedOrPassed(professeur.getId(), payload.getSeance(), payload.getJour(), payload.getWeek(), salle) != null) {
+            throw new DuplicationException("Professeur already has a pending or accepted reservation in the same timestamp and salle");
         }
         EmploiDuTemps emp = emploiDuTempsEJB.findEmploiDuTempsByJourAndSeanceANDProfesseur(payload.getJour(), payload.getSeance(), professeur.getId());
         if(emp != null && (liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()) == null || liberationEJB.getLiberationByEmploiDuTempsId(emp.getId()).getWeek().ordinal() != payload.getWeek().ordinal())) {
