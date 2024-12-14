@@ -43,6 +43,7 @@ public class SalleRouter {
 
     @GET
     @Path("/free-day-week-seance")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Secured
     public List<Salle> getFreeSallePerDayAndWeekAndSceance(@Valid GetPayload payload) {
