@@ -41,12 +41,16 @@ public class ReservationEJB {
                 .getResultList();
     }
 
-    public Reservation findReservationByProfesseurIdAndNotRejectedOrPassed(Long professeurId) {
+    public Reservation findReservationByProfesseurIdANDSenaceANDDayANDWeekANDSalleNotRejectedOrPassed(Long professeurId, Seance seance, Jour jour, Week week, Salle salle) {
         try {
-            return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.professeur.id = :professeurId AND r.reservationStatus <> :rejectedStatus AND r.reservationStatus <> :passedStatus", Reservation.class)
+            return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.professeur.id = :professeurId AND r.seance = :seance AND r.jour = :jour AND r.week = :week AND r.reservationStatus <> :rejectedStatus AND r.reservationStatus <> :passedStatus AND r.salle = : salle", Reservation.class)
                     .setParameter("professeurId", professeurId)
+                    .setParameter("seance", seance)
+                    .setParameter("jour", jour)
+                    .setParameter("week", week)
                     .setParameter("rejectedStatus", ReservationStatus.REJECTED)
                     .setParameter("passedStatus", ReservationStatus.PASSED)
+                    .setParameter("salle", salle)
                     .getSingleResult();
         } catch (Exception e) {
             return null;
@@ -55,12 +59,6 @@ public class ReservationEJB {
 
     public List<Reservation> findAllReservations() {
         return entityManager.createQuery("SELECT r FROM Reservation r", Reservation.class).getResultList();
-    }
-
-    public List<Reservation> findPendingReservations() {
-        return entityManager.createQuery("SELECT r FROM Reservation r WHERE r.reservationStatus = :reservationStatus", Reservation.class)
-                .setParameter("reservationStatus", ReservationStatus.PENDING)
-                .getResultList();
     }
 
     public List<Reservation> findReservationsAcceptedBySalleAndSeanceANDJourANDWeek(Long salleId, Seance seance, Jour jour, Week week) {
